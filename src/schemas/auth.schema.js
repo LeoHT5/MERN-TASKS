@@ -1,6 +1,5 @@
 import { z } from 'zod'
 
-// res.body, es un objeto
 export const registerSchema = z.object({
   username: z.string({
     required_error: 'Username is required'
@@ -8,7 +7,7 @@ export const registerSchema = z.object({
   email: z.string({
     required_error: 'Email is required'
   }).email({
-    message: 'Invalid Email'
+    message: 'Email is invalid'
   }),
   password: z.string({
     required_error: 'Password is required'
@@ -21,7 +20,7 @@ export const loginSchema = z.object({
   email: z.string({
     required_error: 'Email is required'
   }).email({
-    message: 'Invalid email'
+    message: 'Email is invalid'
   }),
   password: z.string({
     required_error: 'Password is required'

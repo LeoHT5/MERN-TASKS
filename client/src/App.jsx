@@ -1,22 +1,41 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
 
-import RegisterPage from './pages/RegisterPage.jsx'
-import LoginPage from './pages/LoginPage.jsx'
+import RegisterPage from './pages/RegisterPage'
+import LoginPage from './pages/LoginPage'
+import TasksPage from './pages/TasksPage'
+import HomePage from './pages/HomePage'
+import TaskFormPage from './pages/TaskFormPage'
+import ProfilePage from './pages/ProfilePage'
+import ProtectedRoute from './ProtectedRoute'
+import { TaskProvider } from './context/TasksContext'
+import NavBar from './components/NavBar'
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<h1>Home Page</h1>} />
-        <Route path='/login' element={<LoginPage/>} />
-        <Route path='/register' element={<RegisterPage/>} />
-        <Route path='/task' element={<h1>Task Page</h1>} />
-        <Route path='/add-task' element={<h1>New Task</h1>} />
-        <Route path='/task/:id' element={<h1>Update Task</h1>} />
-        <Route path='/profile' element={<h1>Profile</h1>} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <TaskProvider>
+        <BrowserRouter>
+          <NavBar />
+          <main className='container mx-auto px-10'>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/register' element={<RegisterPage />} />
+
+              <Route element={<ProtectedRoute />}>
+                <Route path='/tasks' element={<TasksPage />} />
+                <Route path='/add-task' element={<TaskFormPage />} />
+                <Route path='/task/:id' element={<TaskFormPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
+              </Route>
+
+            </Routes>
+          </main>
+        </BrowserRouter>
+      </TaskProvider>
+    </AuthProvider>
   )
 }
 
