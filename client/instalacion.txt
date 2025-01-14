@@ -1,0 +1,3 @@
+- npm i react-router-dom, ayuda a gestionar la navegación entre diferentes partes de la aplicación
+- npm i react-hook-form, valida formularios de manera sencilla y ofrece un rendimiento optimizado al minimizar las re-renderizaciones.
+- npm i axios, realiza solicitudes HTTP desde el navegador o desde Node.js
